@@ -1,5 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
+var dotenv = require('dotenv');
+dotenv.config();
 
 const router = express.Router();
 
@@ -10,7 +12,7 @@ router.post('/sendToAll', (req,res)=>{
     };
 
     var fcm_tokens = [
-        'eRmDU5f7T5ObtHa77e-wFE:APA91bEBks4Insckx56p1sAoSNTe2-VnXg-vt4MMRMyhR5PClpPmcaKMSFY82leYub7DtfeE3mi4xsyOQHW3QtCQBYRhs0QfGuKv5JtpPxBSjcDPRUSHsauFc7Z6Yjd23G42RgvN18D6'
+        `${process.env.FCM_TOKEN}`
     ];
     var notification_body = {
         'notification' : notification,
@@ -20,7 +22,7 @@ router.post('/sendToAll', (req,res)=>{
     fetch('https://fcm.googleapis.com/fcm/send', {
         'method' : 'POST',
         'headers' : {
-            'Authorization' : 'key='+'AAAAS8aIykg:APA91bFgQ7PXzzpGjqlpFeilxFqCnTzDhxa-Pl4zTwHcNpRKzSRJD3glgQduBkptYdiN6o0KG22z6oj17fWZbc7svpRDCZoUzYr9V9hHPYm8sqEbGg9NG8h5MHZTQNvbLxFbTwuSScQM',
+            'Authorization' : 'key='+`${process.env.FIREBASE_KEY}`,
             'Content-Type' : 'application/json'
         },
         'body' : JSON.stringify(notification_body)
