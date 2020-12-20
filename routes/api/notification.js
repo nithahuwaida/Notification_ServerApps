@@ -15,8 +15,10 @@ router.post('/sendToAll', (req,res)=>{
         `${process.env.FCM_TOKEN}`
     ];
     var notification_body = {
+        //notification with topic
+        'to' : '/topics/notificationDriver',
         'notification' : notification,
-        'registration_ids' : fcm_tokens
+        // 'registration_ids' : fcm_tokens
     }
 
     fetch('https://fcm.googleapis.com/fcm/send', {
