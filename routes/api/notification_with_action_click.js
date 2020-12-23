@@ -9,7 +9,7 @@ admin.initializeApp({
 const router = express.Router();
 
 
-router.post('/topic', (req,res)=>{
+router.post('/v1', (req,res)=>{
     var topicName = 'industry-tech'
 
     var message = {
